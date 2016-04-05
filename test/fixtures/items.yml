@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: MyString
+  type: 
+  color: MyString
+  season: MyString
+  size: MyString
+  status: MyString
+  description: MyText
+  price: 1.5
+  client_id: 
+  outfit_id: 
+
+two:
+  category: MyString
+  type: 
+  color: MyString
+  season: MyString
+  size: MyString
+  status: MyString
+  description: MyText
+  price: 1.5
+  client_id: 
+  outfit_id: 
