@@ -14,6 +14,9 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
+#Messaging tool
+gem 'layer-api'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -39,6 +42,9 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'bundler'
+
+gem 'paperclip', '~> 4.3' # for pictures
+gem 'aws-sdk-v1' # If using paperclip <= v4.3.1
 
 group :development do
   gem 'pry-rails'
