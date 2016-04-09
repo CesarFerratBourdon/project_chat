@@ -4,7 +4,8 @@ class Client < ActiveRecord::Base
   validates_formatting_of :email, using: :email
   #vneed to validate the presence of other fields when a new client register
 
-  belongs_to :user
+  has_one :conversation
+  has_one :user, :through => :conversation
   has_many :items
 
   has_attached_file :avatar, styles: { full: '500x500#', medium: '300x300#', thumb: '100x100#' }, default_url: '/images/:style/missing.png'

@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up)        { |u| u.permit(:username, :email, :password, :password_confirmation, :avatar, :remember_me) }
-    devise_parameter_sanitizer.for(:sign_in)        { |u| u.permit(:login, :username, :email, :password, :avatar, :remember_me) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password, :avatar) }
+    devise_parameter_sanitizer.permit(:sign_up)        { |u| u.permit(:username, :email, :password, :password_confirmation, :avatar, :remember_me) }
+    devise_parameter_sanitizer.permit(:sign_in)        { |u| u.permit(:login, :username, :email, :password, :avatar, :remember_me) }
+    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password, :avatar) }
   end
 
 
@@ -20,6 +20,18 @@ class ApplicationController < ActionController::Base
     @layer_platform ||= Layer::Platform::Client.new
     @layer_platform
   end
+
+  #IN PRODUCTION
+  #Once you are ready for production implementation, you will need to write your own backend controller
+  #to generate an identity token. check this https://github.com/layerhq/layer-identity-token-ruby
+  #https://github.com/dreimannzelt/layer-identity_token
+
+  # def token_generator
+  #   @token = @layer_platform.generate_identity_token(user_id: "1234", nonce: "your_random_nonce")
+  #   @token = @token.to_s
+  #     @user.id_token = @token
+  # or  @client.id_token = @token
+  # end
 
   def require_user_signed_in
     unless user_signed_in?

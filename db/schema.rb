@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406074225) do
+ActiveRecord::Schema.define(version: 20160409084202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,16 +26,25 @@ ActiveRecord::Schema.define(version: 20160406074225) do
     t.string   "zip_code"
     t.string   "phone_number"
     t.string   "email"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "id_token"
   end
 
-  add_index "clients", ["user_id"], name: "index_clients_on_user_id", using: :btree
+  create_table "conversations", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "client_id"
+    t.string   "conversation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "conversations", ["client_id"], name: "index_conversations_on_client_id", using: :btree
+  add_index "conversations", ["user_id"], name: "index_conversations_on_user_id", using: :btree
 
   create_table "items", force: true do |t|
     t.string   "category"
@@ -90,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160406074225) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "id_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

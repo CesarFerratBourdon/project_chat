@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
         :recoverable, :rememberable, :trackable, :validatable
   attr_accessor :login
 
-  has_many :clients
+  has_many :conversations
+  has_many :clients, :through => :conversations
 
   has_attached_file :avatar, styles: { full: '500x500#', medium: '300x300#', thumb: '100x100#' }, default_url: '/images/:style/missing.png'
 
