@@ -21,18 +21,6 @@ class ApplicationController < ActionController::Base
     @layer_platform
   end
 
-  #IN PRODUCTION
-  #Once you are ready for production implementation, you will need to write your own backend controller
-  #to generate an identity token. check this https://github.com/layerhq/layer-identity-token-ruby
-  #https://github.com/dreimannzelt/layer-identity_token
-
-  # def token_generator
-  #   @token = @layer_platform.generate_identity_token(user_id: "1234", nonce: "your_random_nonce")
-  #   @token = @token.to_s
-  #     @user.id_token = @token
-  # or  @client.id_token = @token
-  # end
-
   def require_user_signed_in
     unless user_signed_in?
 
@@ -45,8 +33,9 @@ class ApplicationController < ActionController::Base
       else
         fallback_redirect = "/"
       end
-
-      redirect_to fallback_redirect, flash: {error: "You must be signed in to view this page."}
+      respond_to do |format|
+        format.html { redirect_to fallback_redirect, flash: { error: 'You must be signed in to view this page.' } }
+        format.json { render json: { error: 'You must be signed in to view this page' }, status: :bad_request }
     end
   end
 

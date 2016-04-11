@@ -1,7 +1,24 @@
 class UsersController < ApplicationController
 
+  require_user_signed_in
+
   before_action :layer_platform, only: [:create]
   # after_action :token_generator, only: [:create]    IN PRODUCTION
+
+
+  #IN PRODUCTION
+  #Once you are ready for production implementation, you will need to write your own backend controller
+  #to generate an identity token. check this https://github.com/layerhq/layer-identity-token-ruby
+  #https://github.com/dreimannzelt/layer-identity_token
+
+  # def token_generator
+  #   @user = User.last
+  #   @user_id = @user.id.to_s
+  #   @token = @layer_platform.generate_identity_token(user_id: @user_id, nonce: "your_random_nonce")
+  #   @token = @token.to_s
+  #   @user = User.last
+  #   @user.update(id_token: @token)
+  # end
 
   def update
     return unless user_is_editing_self
@@ -29,6 +46,6 @@ private
   end
 
   def user_update_params
-    params.require(:user).permit(:avatar, :first_name, :last_name, :username)
+    params.require(:user).permit(:avatar, :first_name, :last_name, :username, :id_token)
   end
 end

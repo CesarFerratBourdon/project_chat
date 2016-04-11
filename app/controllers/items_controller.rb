@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+
+  require_user_signed_in
+  
   def create
     @item = Item.create( user_params )
   end
