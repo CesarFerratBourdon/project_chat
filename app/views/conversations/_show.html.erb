@@ -1,0 +1,48 @@
+<div class="conversation-header panel-header">
+  <div class="title">
+    <span>Advices for <%= @client.first_name %></span>
+  </div>
+</div>
+
+<div class="message-list">
+  <% @conv.each do |message| %>
+    <div class="message-item">
+      <div class="avatar">
+        <span>
+          <% if message.send.name == @user.username %>
+            <%= image_tag @user.avatar.url(:thumb) %>
+          <% else %>
+            Client
+          <% end %>
+        </span>
+      </div>
+      <div class="main">
+        <span class="name"><%= message.sender.name %></span>
+        <div class="message-parts">
+          <div class="bubble text"><%= message.parts.body %></div>
+        </div>
+      </div>
+      <span class="timestamp">
+        <span><%= message.sent_at %></span>
+        <span class="message-status">
+          <% if message.is_unread == true %>
+            <%= "unread" %>
+          <% else %>
+            <%= "read" %>
+          <% end %>
+        </span>
+      </span>
+    </div>
+  <% end %>
+</div>
+
+<div class="typing-indicator-panel">
+</div>
+<div class="message-composer">
+    <%= form_tag("/send_message", method: "get") do %>
+          <%= label_tag(:q, "New message:") %>
+          <%= text_field_tag(:q) %>
+          <%= hidden_field_tag 'conversation_id', @conversation.conversation_id %>
+          <%= submit_tag("Send") %>
+    <% end %>
+</div>

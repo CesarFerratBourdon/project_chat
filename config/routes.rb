@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
   root 'dashboard#index'
   get 'dashboard/index'
+  get '/send_message' => 'conversations#send_message'
+
+  resources :users do
+    resources :conversations
+  end
 
   devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
 
@@ -17,10 +22,9 @@ Rails.application.routes.draw do
   end
 
 
-    resources :users do
-      resources :conversations
-    end
 
+
+end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -69,7 +73,3 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
-
-
-end

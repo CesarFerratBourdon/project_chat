@@ -1,1 +1,71 @@
-<h1>Dashboard</h1>
+<div id="root" class="main-app">
+  <div class="messenger">
+    <div class="left-panel">
+      <div class="panel-header conversations-header">
+        <div class="title">
+          <span>Alice</span><span>"'s Conversations"</span>
+        </div>
+        <a href="#">
+          <i class="icon fa fa-pencil-square-o"></i>
+        </a>
+      </div>
+      <div class="conversation-list">
+        <a class="participant selected-conversation" href="#/conversations/8baffba7-0b42-416f-a588-ab26ad35af08">
+          <div class="avatar cluster">
+            <span>BO</span>
+            <span>AL</span>
+          </div>
+          <div class="info">
+            <div class="main">
+              <span class="title">Advices for Alice</span>
+              <span class="delete fa fa-times-circle" title="Delete conversation"></span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+
+
+    <div class="right-panel">
+      <div class="conversation-header panel-header">
+        <div class="title">
+          <span>Advices for Alice </span>
+          <a href="#" class="edit-title-icon" title="Edit conversation title">
+            <i class="fa fa-pencil"></i>
+          </a>
+        </div>
+      </div>
+      <div class="message-list">
+        <div class="message-item">
+          <div class="avatar">
+            <span>BO</span>
+          </div>
+          <div class="main">
+            <span class="name">Bob</span>
+            <div class="message-parts">
+              <div class="bubble text">
+                Hi Alice, how are you today?
+              </div>
+            </div>
+          </div>
+          <span class="timestamp">
+            <span>
+              4/11/2016 8:38:11 PM
+            </span>
+            <span class="message-status">
+              read
+            </span>
+          </span>
+        </div>
+      </div>
+
+
+      <div class="typing-indicator-panel">
+      </div>
+      <div class="message-composer">
+        <textarea class="message-textarea" placeholder="Enter a message..." rows="1"></textarea>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<!-- Refreshing the page every few seconds could be great for new messages to appear right after being sent -->
+    <div id="root" class="main-app">
+      <div class="messenger">
+
+        <div class="left-panel">
+          <div class="panel-header conversations-header">
+            <div class="title">
+              <span><%= @user.username %>'s conversations</span>
+            </div>
+          </div>
+          <div class="conversation-list">
+            <% @conversations.each do |conversation|  %>
+              <%= link_to user_conversation_path(:conv_id => conversation.uuid), :remote => true, :class => "participant selected-conversation" do %>
+                  <div class="avatar cluster">
+                    <span><%= @user.username %></span>
+                    <span>AL</span>
+                     <!-- harcoded, need to find a way to retrieve client name from database for each conversation -->
+                  </div>
+                  <div class="info">
+                    <div class="main">
+                      <span class="title">Advices for Alice</span>
+                      <!-- hardcoded here as well, same issue -->
+                    </div>
+                  </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+
+        <div class="right-panel">
+
+            <%= render partial: 'show', locals: { conv: conv} %>
+
+        </div>
+      </div>
+    </div>

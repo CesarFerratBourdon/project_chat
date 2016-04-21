@@ -36,6 +36,7 @@ class ApplicationController < ActionController::Base
       respond_to do |format|
         format.html { redirect_to fallback_redirect, flash: { error: 'You must be signed in to view this page.' } }
         format.json { render json: { error: 'You must be signed in to view this page' }, status: :bad_request }
+      end
     end
   end
 

@@ -1,6 +1,8 @@
 class DashboardController < ApplicationController
-  require_user_signed_in
-  
+
+
   def index
+    @user = current_user
+    
   end
 end
