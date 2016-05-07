@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
 
-  root 'dashboard#index'
-  get 'dashboard/index'
+  root "dashboard#index"
+  get 'conversations/index' => 'conversations#index'
   get '/send_message' => 'conversations#send_message'
+
+  resources :clients do
+    resources :conversations
+  end
 
   resources :users do
     resources :conversations

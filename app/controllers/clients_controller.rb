@@ -4,17 +4,17 @@ class ClientsController < ApplicationController
   # after_action :token_generator, only: [:create]    IN PRODUCTION
 
   def create
-    respond_to do |format|
+    # respond_to do |format|
       @client = Client.new(client_params) #client_params have to be extracted from Json from IOS registration
       if @client.save
-        format.json { render json: @client, status: :created }
+        # format.json { render json: @client, status: :created }
 
-        render 'conversation/create'
-        
+        create_conversation
+
       else
         respond_to_validation_error(format: format, model: @client)
       end
-    end
+    # end
   end
 
   #IN PRODUCTION
